@@ -1,7 +1,7 @@
 
 body {
 	line-height: 1.4;
-	font-family: 'Roboto', sans-serif;
+	font-family: 'Questrial', sans-serif;
     font-size: 18px;
     letter-spacing: 0.5px;
     font-size: 15px;
@@ -86,11 +86,18 @@ a:hover, a:focus, a:active{
 	color: #fff;
 	margin-top: 100px;
 }
-.banner-text h2, .banner-text p{
+.banner-text h2 {
 	font-size: 40px;
 	font-weight: 400;
     margin-top: 40px;
 	font-family: 'Questrial', sans-serif;
+}
+
+.banner-text p {
+    font-size: 50px;
+    font-weight: 400;
+    margin-top: 40px;
+    font-family: 'Satisfy', sans-serif
 }
 
 .overlay-detail{
@@ -120,14 +127,17 @@ a:hover, a:focus, a:active{
 }
 
 .card-title {
-    height: 50px;
+    height: 35px;
     text-align: center;
 }
 #philosophy{
     padding-top: 250px !important;
+    margin-bottom: 50px !important;
 	text-align: center !important;
+
 }
-.philosophy-text p{
+
+.philosophy-text {
     font-size: 3rem;
     color: #444;
 }
@@ -355,7 +365,11 @@ Responsive media queries
 
 
 @media (min-width: 100px) and (max-width: 550px) {
-	
+	.card {
+    height: 450px;
+    margin-bottom: 20px;
+    }
+
 	.navbar-nav > li > a {
     padding-top: 15px;
     padding-bottom: 15px;
