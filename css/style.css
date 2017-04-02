@@ -137,12 +137,23 @@ Responsive media queries
     height: 50px;
     text-align: center;
 }
-#about{
-	
-	margin-bottom: -3px;
+#philosophy{
+    padding-top: 250px !important;
+	text-align: center !important;
+}
+.philosophy-text p{
+    font-size: 3rem;
+    color: #444;
 }
 
+.philosophy-heading{
+    font-size: 4rem !important;
+    font-weight: bold !important;
+}
+
+
 #services{
+    padding-top: 100px !important;
     background-size: cover;
     margin-bottom: -3px;
     min-height: 500px;
@@ -159,9 +170,7 @@ Responsive media queries
 	border-right: 5px solid #BE2525;
 	font-size: 24px;
 }
-.about-text p{
-	color: #444;
-}
+
 
 .abt-list li{
 	padding: 5px 0px;
@@ -190,6 +199,10 @@ Responsive media queries
 }
 #myGrid{
 	margin-top: 50px;
+}
+
+#team {
+    padding-top: 100px !important;
 }
 .team-sec blockquote {
     background: #eee;
@@ -371,12 +384,16 @@ Responsive media queries
 		text-align: center !important;
 	}
 	.banner-text h2, .banner-text p {
-    font-size: 25px;
+    font-size: 40px;
     text-align: right;
 	}
 	.title-text{
 	margin-bottom: 15px;
 	}
+
+    #philosophy {
+        padding-top: 100px !important;
+    }
 }
 
 .team-member {
