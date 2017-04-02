@@ -406,3 +406,8 @@ Responsive media queries
 .team-member p {
   margin-top: 0;
 }
+
+#send {
+    border: none !important;
+    background-color: steelblue !important;
+}
