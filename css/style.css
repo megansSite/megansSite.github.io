@@ -57,7 +57,7 @@ Responsive media queries
 .navbar-brand {
     margin-top: -45px !important;
     margin-left: -40px !important;
-    height: 200px;
+    height: 150px;
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
@@ -155,7 +155,7 @@ Responsive media queries
 	margin-bottom: 50px;
 }
 .title-text{
-	padding: 0px 25px 0px 0px;
+	padding: 20px 25px 0px 0px;
 	border-right: 5px solid #BE2525;
 	font-size: 24px;
 }
@@ -275,7 +275,7 @@ footer {
     color: #BE2525;
 }
 
-.footer__navigation li, .social-list li{
+.footer__navigation li, {
 	display: inline-block;
 }
 .contact-sec h2 {
@@ -315,18 +315,7 @@ footer {
 .carousel-info, blockquote {
     float: left;
 }
-.social-list li{
-	transition: 0.2s linear;
-	-webkit-transition: 0.2s linear;
-	-moz-transition: 0.2s linear;
-	opacity: .5;
-	display: inline-block;
-	margin: 0;
-}
-.social-list li a{
-		font-size: 28px;
-		margin-right: 15px;
-}
+
 .type-underline, .type-underline:hover{
 	color: #767676; 
 }
@@ -367,8 +356,10 @@ Responsive media queries
     padding-top: 15px;
     padding-bottom: 15px;
 	}
-	.navbar-brand{
-		margin-top: 0px;
+	.navbar-brand {
+    height: 125px;
+    margin-left: 10px !important;
+    }
 	}
     .carousel-info {
     	margin-bottom: 30px;
@@ -379,11 +370,9 @@ Responsive media queries
 	.text-center-xs{
 		text-align: center !important;
 	}
-	.social-list{
-		margin-bottom: 15px;
-	}
 	.banner-text h2, .banner-text p {
-    font-size: 30px;
+    font-size: 25px;
+    text-align: right;
 	}
 	.title-text{
 	margin-bottom: 15px;
@@ -410,4 +399,14 @@ Responsive media queries
 #send {
     border: none !important;
     background-color: steelblue !important;
+}
+
+@media (max-width: 767px) {
+   .navbar-collapse {
+      max-height: none !important;
+      text-align: center;
+      background-color: black;
+      opacity: .9;
+
+   }
 }

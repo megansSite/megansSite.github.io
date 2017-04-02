@@ -21,6 +21,10 @@
         event.preventDefault();
         }
     });
+
+    $('.navbar-collapse a').click(function (e) {
+        $('.navbar-collapse').collapse('toggle');
+    });
     
     // About section scroll
     $(".overlay-detail a").on('click', function(event) {
@@ -42,10 +46,10 @@
         }
     });
     
-    // Testimonials Slider
-    $('.bxslider').bxSlider({
-      adaptiveHeight: true,
-      mode: 'fade'
-    });
+    // // Testimonials Slider
+    // $('.bxslider').bxSlider({
+    //   adaptiveHeight: true,
+    //   mode: 'fade'
+    // });
     
 })(jQuery);
