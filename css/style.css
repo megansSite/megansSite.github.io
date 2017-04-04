@@ -1,3 +1,26 @@
+/*
+color palette: 
+salmon 
+#f3958b
+rgb(243,149,139);
+
+sea green
+#98ceac
+rgb(152,206,172)
+
+papaya whip
+#ffefd8
+rgb(255,239,216)
+
+green gray
+#747e63
+rgb(116,126,99)
+
+slate
+#38332f
+rgb(56,51,47)
+http://www.boredpanda.com/nature-colors-palette-design-seeds-jessica-colaluca/
+*/
 
 body {
 	line-height: 1.4;
@@ -58,6 +81,7 @@ a:hover, a:focus, a:active{
 	font-size: 14px;
 	font-weight: 300;
 	color: white;
+    background-color: #38332f;
     outline: none;
 }
 .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
@@ -76,7 +100,7 @@ a:hover, a:focus, a:active{
 }
 
 .bg-color{
-	background-color: RGBA(0, 0, 0, 0.70);
+	background-color: RGBA(0, 90, 110, 0.70);
 	min-height: 650px;
 }
 .navbar-border{
@@ -134,7 +158,6 @@ a:hover, a:focus, a:active{
     padding-top: 250px !important;
     margin-bottom: 50px !important;
 	text-align: center !important;
-
 }
 
 .philosophy-text {
@@ -154,6 +177,7 @@ a:hover, a:focus, a:active{
     margin-bottom: -3px;
     min-height: 500px;
 }
+
 .section-padding{
 	padding: 60px 0px;
 }
@@ -237,8 +261,9 @@ blockquote {
 
 #contact {
     width: 100%;
-    background-color: RGBA(8, 7, 7, 0.92);
+    background-color: RGBA(56, 51, 47, 0.92);
 }
+
 
 #contact .btn-primary {
     background: #BE2525;
