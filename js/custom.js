@@ -45,11 +45,12 @@
             $(".navbar-fixed-top").removeClass("top-nav-collapse");
         }
     });
-    
-    // // Testimonials Slider
-    // $('.bxslider').bxSlider({
-    //   adaptiveHeight: true,
-    //   mode: 'fade'
+
+    // $(window).scroll(function () {
+        //         if ($(window).scrollTop() >= $(document).height() - $(window).height() - 1950) {
+            
+        // }
     // });
+    
     
 })(jQuery);
