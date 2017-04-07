@@ -1,25 +1,31 @@
 /*
+https://coolors.co/4a3637-5c6670-a49693-d9cfcd-749e6e
 color palette: 
-salmon 
-#f3958b
-rgb(243,149,139);
+text:
+darkslategray
+#4a3637
+rgb(74,54,55)
 
-sea green
-#98ceac
-rgb(152,206,172)
+dimgray
+#5c6670
+rgb(92,102,112)
 
-papaya whip
-#ffefd8
-rgb(255,239,216)
 
-green gray
-#747e63
-rgb(116,126,99)
+Background:
+lightgray
+#d9cfcd
+rgb(217,207,205)
 
-slate
-#38332f
-rgb(56,51,47)
-http://www.boredpanda.com/nature-colors-palette-design-seeds-jessica-colaluca/
+
+accent:
+
+rosybrown
+#a49693
+rgb(164,150,147)
+
+camoflagegreen
+#749E6E
+rgb(116,158, 110)
 */
 
 body {
@@ -27,9 +33,10 @@ body {
 	font-family: 'Questrial', sans-serif;
     font-size: 18px;
     letter-spacing: 0.5px;
-    font-size: 15px;
 	font-weight: 400;
-    background: url('../img/gray_texture.jpg') ;
+    color: #4a3637;
+    /*background: url('../img/gray_texture.jpg') */;
+    background-color: #d9cfcd;
 }
 ol, ul {
 	list-style: none;
@@ -55,6 +62,9 @@ a:hover, a:focus, a:active{
     outline: none;
 }
 
+h4 {
+    font-weight: bold !important;
+}
 .header {
     background: url('../img/landing.jpg') no-repeat fixed;
     background-size: cover;
@@ -68,9 +78,9 @@ a:hover, a:focus, a:active{
     transition: all 0.3s;
 }
 .navbar-brand {
-    margin-top: -45px !important;
-    margin-left: -40px !important;
-    height: 150px;
+/*    margin-top: -45px !important;
+    margin-left: -40px !important;*/
+    height: 225px;
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
@@ -81,26 +91,38 @@ a:hover, a:focus, a:active{
 	font-size: 14px;
 	font-weight: 300;
 	color: white;
-    background-color: #38332f;
+    background-color: #4a3637;
     outline: none;
+    background-color: transparent;
 }
 .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
-    color: #fffde0;
-    background-color: transparent;
+    color: #749E6E;
+
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
-    color: #fffde0;
+    color: #749E6E;
+    font-weight: bold;
+    background-color: #d9cfcd;
+}
+
+#home-button:hover {
+    color: #749E6E;
+}
+
+#home-button, #home-button:focus {
     background-color: transparent;
+    color: white;
 }
 
 .top-nav-collapse {
     padding: 0; 
-    background: rgba(0,0,0, 0.80);
+    background: rgba(74,54,55, 0.80);
     max-height: 100px;
 }
 
 .bg-color{
-	background-color: RGBA(0, 90, 110, 0.70);
+	background-color: RGBA(74, 54, 55, 0.90);
+
 	min-height: 650px;
 }
 .navbar-border{
@@ -145,33 +167,44 @@ a:hover, a:focus, a:active{
 
 .card-img-top {
     width: 100%;
+    display: block;
+    border: 7px solid #749E6E;
+    border-radius: 20px;
 }
 .card {
-    height: 450px;
+    height: 520px;
+}
+
+.card-text {
+    display: block !important;
 }
 
 .card-title {
     height: 35px;
     text-align: center;
 }
-#philosophy{
+#philosophy {
     padding-top: 250px !important;
-    margin-bottom: 50px !important;
+    padding-bottom: 100px !important;
 	text-align: center !important;
+    background-color: #749E6E;
+
+    color: white;
 }
 
 .philosophy-text {
     font-size: 3rem;
-    color: #444;
+    text-align: center !important;
+    color: white;
 }
 
-.philosophy-heading{
-    font-size: 4rem !important;
+#philosophy-heading{
+    font-size: 50px !important;
     font-weight: bold !important;
 }
 
 
-#services{
+#services {
     padding-top: 100px !important;
     background-size: cover;
     margin-bottom: -3px;
@@ -187,7 +220,7 @@ a:hover, a:focus, a:active{
 }
 .title-text{
 	padding: 20px 25px 0px 0px;
-	border-right: 5px solid #BE2525;
+	border-right: 5px solid #749E6E;
 	font-size: 40px;
 }
 
@@ -205,9 +238,7 @@ a:hover, a:focus, a:active{
     font-size: 18px;
     font-weight: 400;
 }
-#portfolio{
-	background-color: #f0f1e9;
-}
+
 .grid-padding{
 	padding: 0 8px;
 }
@@ -261,13 +292,13 @@ blockquote {
 
 #contact {
     width: 100%;
-    background-color: RGBA(56, 51, 47, 0.92);
+    background-color: #5c6670;
 }
 
 
 #contact .btn-primary {
-    background: #BE2525;
-    border: 1px solid #BE2525;
+    background: #749E6E;
+    border: 1px solid #749E6E;
 }
 
 .validation {
@@ -278,39 +309,15 @@ blockquote {
     font-size:13px;
 }
 
-#sendmessage {
-    color: green;
-    border:1px solid green;
-    background: #fff;
-    display:none;
-    text-align:center;
-    padding:15px;
-    font-weight:600;
-    margin-bottom:15px;
-}
 
-#errormessage {
-    color: red;
-    display:none;
-    border:1px solid red;
-    text-align:center;
-    padding:15px;
-    font-weight:600;
-    margin-bottom:15px;
-    background: #fff;
-}
-
-#sendmessage.show, #errormessage.show, .show {
-	display:block;
-}
 
 footer {
     padding: 40px 0;
-    background: #F2F3EB;
+
 }
 
 .footer a {
-    color: #BE2525;
+    color: #749E6E;
 }
 
 .footer__navigation li, {
@@ -371,11 +378,13 @@ footer {
     padding-top: 24px;
     padding-bottom: 24px;
 }
-.navbar-brand{
+/*.navbar-brand{
 	margin-top: 9px;
-}
+}*/
 .grid-item { width: 200px; }
 .grid-item--width2 { width: 400px; }
+
+
 
 /***********************************
 ************************************
@@ -400,7 +409,7 @@ Responsive media queries
     padding-bottom: 15px;
 	}
 	.navbar-brand {
-    height: 125px;
+    height: 175px;
     margin-left: 10px !important;
     }
 	}
@@ -426,34 +435,54 @@ Responsive media queries
     }
 }
 
+
 .team-member {
   text-align: center;
   margin-bottom: 50px;
 }
 .team-member img {
   margin: 0 auto;
-  border: 7px solid white;
+  margin-top: 40px;
+  border: 7px solid #749E6E;
 }
 .team-member h4 {
   margin-top: 25px;
   margin-bottom: 0;
   text-transform: none;
+  text-align: center;
 }
 .team-member p {
   margin-top: 0;
+  text-align: center;
 }
 
 #send {
     border: none !important;
-    background-color: steelblue !important;
+    background-color: #749E6E !important;
 }
 
 @media (max-width: 767px) {
+
+   .card-img-top {
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+   }
    .navbar-collapse {
       max-height: none !important;
       text-align: center;
-      background-color: black;
-      opacity: .9;
+      background-color: #4a3637;
+      opacity: .95;
 
    }
 }
+
+@media (min-width: 992px) {
+    .navbar-brand {
+        height: 300px;
+    }
+    h2 {
+        font-size: 40px !important;
+    }
+
+    }
