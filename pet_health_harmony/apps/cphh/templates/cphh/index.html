@@ -21,6 +21,12 @@
       <div class="bg-color">
         <header id="main-header">
         <nav class="navbar navbar-default navbar-fixed-top">
+        <!-- need to fix formatting -->
+        {% if messages %}
+        {% for message in messages %}
+             <p>{{message}}</p>
+        {% endfor %}
+        {% endif %}
           <div class="container">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#lauraMenu">
@@ -32,6 +38,9 @@
              
             </div>
             <div class="collapse navbar-collapse" id="lauraMenu">
+            <ul class="nav navbar-nav navbar-left navbar-border">
+                <li class="active"><a id="home-button" href="{% url 'cphh:images' %}">Happy Customers!</a></li>
+              </ul>
               <ul class="nav navbar-nav navbar-right navbar-border">
                 <li class="active"><a id="home-button" href="#main-header">Home</a></li>
                 <li><a href="#services">Services</a></li>
@@ -63,6 +72,7 @@
         </div>
         </div>
       </div>
+ 
    <section id="services" class=" section-padding wow fadeIn delay-05s">
     <div class="container">
       <div class="row">
@@ -182,15 +192,6 @@
         </div>
     </section>
 
-<!--   <section id="map" class="section-padding wow fadeIn delay-05s">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div id="map"></div>
-        </div> 
-      </div>
-    </div>
-  </section> -->
 
   <section id="contact" class="section-padding wow fadeIn delay-05s">
     <div class="container">
@@ -212,12 +213,21 @@
             <h3 class="text-white">Sun Closed</h3>
         </div>
         <div id="contact-form" class="col-md-6 pull-right">
-
             <h3 class="deco text-white pull-right">Contact Us</h3>
-            <form method="POST" action="https://formspree.io/meganacarolan@gmail.com" class="contactForm">
+            <form method="POST" action="{% url 'cphh:contact' %}" class="contactForm">
+            {% csrf_token %}
               <input type="hidden" name="_subject" value="Contact request from CPHH website" />
               <div class="form-group">
-                <input class="form-control" type="email" name="_replyto" placeholder="Your email" required>
+                <input class="form-control" type="email" name="email" placeholder="Your email" required>
+              </div>
+              <div style="width: 50%;" class="form-group pull-left">
+                <input class="form-control" type="name" name="first_name" placeholder="first name" required>
+              </div>
+              <div style="width: 50%;" class="form-group pull-right">
+                <input class="form-control" type="name" name="last_name" placeholder="last name" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="text" name="phone" placeholder="phone number" required>
               </div>
               <div class="form-group">
                 <textarea rows="5" class="form-control" name="message" placeholder="Your message" required></textarea>
@@ -228,7 +238,6 @@
             </form>
         </div>
       </div>
-
     </div>
   </section>
 
@@ -239,8 +248,7 @@
       <div class="row">
           <div class="col-md-6">
               <div class="footer">
-                <p>© Copyright Chicago Pet Health &amp; Harmony 2017</p> 
-    
+                <p>© Copyright Chicago Pet Health &amp; Harmony 2017</p>
                     <div class="credits" style="font-size: .7rem;">
                         <p>Designed by <a href="https://bootstrapmade.com/">BootstrapMade.com</a> © Design Copyright Laura Theme. All Rights Reserved</p>
                     </div>

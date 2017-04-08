@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mapwidgets',
 ]
 
 MIDDLEWARE = [
@@ -102,8 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-#     "GOOGLE_MAP_API_KEY": "AIzaSyA1ve9ITEHktYDE2tlPTxAzC_4ueqdZUww"
-# 
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
@@ -121,5 +118,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
+ENV_PATH = os.path.abspath(os.path.dirname(__file__))
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(ENV_PATH, '/static/')
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'MEDIA')
+
+MEDIA_URL = "media/"

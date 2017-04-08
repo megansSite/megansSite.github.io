@@ -397,6 +397,10 @@ footer {
     font-weight: lighter !important;
 }
 
+#contact-form {
+
+    margin-top: -50px;
+    }
 /***********************************
 ************************************
 Responsive media queries
@@ -414,7 +418,7 @@ Responsive media queries
     #contact-form {
     width: 100%;
     background-color: #5c6670;
-}
+    }
 }
 
 
