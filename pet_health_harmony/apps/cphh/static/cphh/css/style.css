@@ -24,19 +24,19 @@ rosybrown
 rgb(164,150,147)
 
 camoflagegreen
-#749E6E
+#9da993
 rgb(116,158, 110)
 */
 
 body {
 	line-height: 1.4;
-	font-family: 'Questrial', sans-serif;
+	font-family: 'Pier Sans Light', sans-serif;
     font-size: 18px;
     letter-spacing: 0.5px;
 	font-weight: 400;
     color: #4a3637;
-    /*background: url('../img/gray_texture.jpg') */;
-    background-color: #d9cfcd;
+    background: url('../img/texture.jpg') ;/*
+    background-color: #d9cfcd;*/
 }
 ol, ul {
 	list-style: none;
@@ -78,8 +78,6 @@ h4 {
     transition: all 0.3s;
 }
 .navbar-brand {
-/*    margin-top: -45px !important;
-    margin-left: -40px !important;*/
     height: 225px;
 }
 
@@ -96,17 +94,17 @@ h4 {
     background-color: transparent;
 }
 .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
-    color: #749E6E;
+    color: #9da993;
 
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
-    color: #749E6E;
+    color: #9da993;
     font-weight: bold;
     background-color: #d9cfcd;
 }
 
 #home-button:hover {
-    color: #749E6E;
+    color: #9da993;
 }
 
 #home-button, #home-button:focus {
@@ -122,8 +120,35 @@ h4 {
 
 .bg-color{
 	background-color: RGBA(74, 54, 55, 0.90);
-
 	min-height: 650px;
+}
+
+.sm-color {
+    background-color: RGBA(74, 54, 55, 0.90);
+    max-height: 85px;
+}
+
+#gallery {
+    margin-top: 30px;
+}
+
+.gallery {
+    margin-top: 100px;
+}
+.gallery-block {
+    height: 400px;
+    width: 100%;
+    vertical-align: middle !important;
+    margin: 0 auto !important;
+    margin-top: -50px !important;
+    overflow: hidden !important;
+}
+.gallery-image {
+    display: block;
+    margin: 0 auto;
+    padding-top: 10px !important;
+ /*   overflow: hidden !important;*/
+
 }
 .navbar-border{
 }
@@ -133,10 +158,10 @@ h4 {
 	margin-top: 100px;
 }
 .banner-text h2 {
-	font-size: 40px;
-	font-weight: 400;
+	font-size: 60px !important;
+/*	font-weight: 400;*/
     margin-top: 40px;
-	font-family: 'Questrial', sans-serif;
+	font-family: 'Athelas', sans-serif;
 }
 
 .banner-text p {
@@ -162,13 +187,13 @@ h4 {
 	border-radius: 50%;
 }
 .deco{
-	font-family: 'Satisfy', cursive;
+	font-family: 'Athelas', cursive;
 }
 
 .card-img-top {
     width: 100%;
     display: block;
-    border: 7px solid #749E6E;
+    border: 4px solid #9da993;
     border-radius: 20px;
 }
 .card {
@@ -187,7 +212,7 @@ h4 {
     padding-top: 250px !important;
     padding-bottom: 100px !important;
 	text-align: center !important;
-    background-color: #749E6E;
+    background-color: #9da993;
 
     color: white;
 }
@@ -220,8 +245,12 @@ h4 {
 }
 .title-text{
 	padding: 20px 25px 0px 0px;
-	border-right: 5px solid #749E6E;
+	border-right: 5px solid #9da993;
 	font-size: 40px;
+}
+
+.contact-brand {
+    width: 200px;
 }
 
 
@@ -230,9 +259,10 @@ h4 {
 	font-size: 18px;
 	font-weight: 400;
 }
-.services-text p{
-    color: #444;
-}
+/*.services-text p{
+   /* color: #444;*/
+/*   font-weight: lighter !important;
+}*/
 .services-list li{
     padding: 5px 0px;
     font-size: 18px;
@@ -254,6 +284,7 @@ h4 {
 
 #team {
     padding-top: 100px !important;
+    padding-left: 10px;
 }
 .team-sec blockquote {
     background: #eee;
@@ -300,13 +331,18 @@ blockquote {
 
 #contact {
     width: 100%;
-    background-color: #5c6670;
+    background-color: RGBA(74, 54, 55, 0.90);
 }
 
 
 #contact .btn-primary {
-    background: #749E6E;
-    border: 1px solid #749E6E;
+    background: #9da993;
+    border: 1px solid #9da993;
+}
+
+#login {
+    width: 100%;
+    background-color: RGBA(74, 54, 55, 0.90);
 }
 
 .validation {
@@ -325,18 +361,18 @@ footer {
 }
 
 .footer a {
-    color: #749E6E;
+    color: #9da993;
 }
 
 .footer__navigation li, {
 	display: inline-block;
 }
-.contact-sec h2 {
+/*.contact-sec h2 {
     font-size: 28px;
     color: #fff;
     font-weight: 600;
     padding: 15px 0px;
-}
+}*/
 .footer__navigation li a {
 	display: inline-block;
 	color: #767676;
@@ -386,9 +422,7 @@ footer {
     padding-top: 24px;
     padding-bottom: 24px;
 }
-/*.navbar-brand{
-	margin-top: 9px;
-}*/
+
 .grid-item { width: 200px; }
 .grid-item--width2 { width: 400px; }
 
@@ -397,15 +431,26 @@ footer {
     font-weight: lighter !important;
 }
 
-#contact-form {
 
-    margin-top: -50px;
+#register-form {
+    margin-top: 50px;
     }
+
+
 /***********************************
 ************************************
 Responsive media queries
 ************************************
 ***********************************/
+@media (min-width: 100px) and (max-width: 599px){
+    .banner-text > .headline {
+        font-size: 2em !important;
+    }
+    .banner-text > .subline {
+        font-size: 1em !important;
+    }
+}
+
 @media (min-width: 551px) and (max-width: 980px){
 	.title-text{
 	margin-bottom: 15px;
@@ -416,8 +461,8 @@ Responsive media queries
         margin: 0 auto;
     }
     #contact-form {
-    width: 100%;
-    background-color: #5c6670;
+        margin-top: 20px;
+        width: 100%;
     }
 }
 
@@ -477,7 +522,7 @@ Responsive media queries
 .team-member img {
   margin: 0 auto;
   margin-top: 40px;
-  border: 7px solid #749E6E;
+  border: 4px solid #9da993;
 }
 .team-member h4 {
   margin-top: 25px;
@@ -492,7 +537,12 @@ Responsive media queries
 
 #send {
     border: none !important;
-    background-color: #749E6E !important;
+    background-color: #9da993 !important;
+}
+
+.delete-btn {
+    border: none !important;
+    background-color: indianred !important;
 }
 
 @media (max-width: 767px) {
@@ -514,9 +564,6 @@ Responsive media queries
 @media (min-width: 992px) {
     .navbar-brand {
         height: 300px;
-    }
-    h2 {
-        font-size: 40px !important;
     }
 
     }

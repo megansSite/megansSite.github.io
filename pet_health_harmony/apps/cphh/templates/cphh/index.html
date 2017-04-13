@@ -18,8 +18,8 @@
 
   <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60"">
   <div class="header">
-      <div class="bg-color">
-        <header id="main-header">
+    <div class="bg-color">
+      <header id="main-header">
         <nav class="navbar navbar-default navbar-fixed-top">
         <!-- need to fix formatting -->
         {% if messages %}
@@ -38,30 +38,29 @@
              
             </div>
             <div class="collapse navbar-collapse" id="lauraMenu">
-            <ul class="nav navbar-nav navbar-left navbar-border">
-                <li class="active"><a id="home-button" href="{% url 'cphh:images' %}">Happy Customers!</a></li>
+              <ul class="nav navbar-nav navbar-left navbar-border">
+                <li class="active"><a id="home-button" href="{% url 'cphh:gallery' %}">Meet our Happy Patients!</a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right navbar-border">
                 <li class="active"><a id="home-button" href="#main-header">Home</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#philosophy">Philosophy</a></li>
-                <li><a href="#team">Meet the Team</a></li>
+                <li><a href="#team">Our Team</a></li>
                 <li><a href="#contact">About/Contact</a></li>
               </ul>
             </div>
             
           </div>
         </nav>
-        </header>
-        <div class="wrapper">
+      </header>
+      <div class="wrapper">
         <div class="container">
           <div class="row">
             <div class="col-md-12 wow fadeIn delay-05s">
-
               <div class="banner-text">
               <img class="navbar-brand" src="{% static 'cphh/img/logo.png' %}">
-                <h2>Progressive veterinary care.</h2>
-                <p >Provided in the comfort<br>of your own home.</p>
+                <h2 class="headline">Progressive veterinary care.</h2>
+                <p class="subline">Provided in the comfort<br>of your own home.</p>
               </div>
               <div class="overlay-detail text-center">
                   <a href="#services"><i class="fa fa-angle-down" >&or;</i></a>
@@ -84,9 +83,9 @@
         </div>
         <div class="col-md-6 text-left">
           <div class="services-text">
-            <h4>We provide full-service veterinary care in the comfort of your own home.</h4>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
+          <br>
+            <p>We provide full-service veterinary care in the comfort of your own home.</p>
+            
           </div>
         </div>
       </div>
@@ -101,7 +100,7 @@
         <div class="card col-sm-6 col-md-3 col-lg-3" >
           <img class="card-img-top" src="{% static 'cphh/img/dogs.jpg' %}" alt="Card image cap">
           <div class="card-block">
-            <h4 class="card-title">ADULT WELLNESS EXAMS AND MEDICAL MANAGEMENT</h4>
+            <h4 class="card-title">ADULT WELLNESS EXAMS & MEDICAL MANAGEMENT</h4>
             <p class="card-text">Let us ensure that your pet continues to thrive with annual wellness exams and preventative blood testing for early detection of diseases. We can manage many chronic illnesses at home with routine monitoring and convenient access to a fully stocked pharmacy. </p>
           </div>
         </div>
@@ -152,7 +151,6 @@
                   <h2 class="deco title-text">
                      Our Amazing Team
                   </h2>
-
                 </div>
                 <br>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -197,40 +195,48 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class="contact-sec text-center">
-            <h2 class="deco">Hours and Location</h2>
+          <div class="text-right contact-sec text-white">
+            <h2 class="deco title-text">Hours, Location and Contact</h2>
           </div>
+          <img class="pull-right contact-brand" src="{% static 'cphh/img/logo.png' %}">
+          p
         </div>
       </div>
       <div class="row">
         <div class="col-md-6 pull-left">
-          <h3 class="text-white">123 Main St., Chicago, IL 60606</h3>
+          <h3 class="text-white">Serving Chicago and Southern Lake County</h3>
           <div id="map"></div>
         </div>
         <div class="col-md-6 pull-right">
+        
           <h3 class="text-white">Mon-Fri 9am-9pm</h3>
             <h3 class="text-white">Sat 10am-4pm</h3>
             <h3 class="text-white">Sun Closed</h3>
         </div>
+        <br>
+        <br>
         <div id="contact-form" class="col-md-6 pull-right">
-            <h3 class="deco text-white pull-right">Contact Us</h3>
+
             <form method="POST" action="{% url 'cphh:contact' %}" class="contactForm">
             {% csrf_token %}
               <input type="hidden" name="_subject" value="Contact request from CPHH website" />
-              <div class="form-group">
-                <input class="form-control" type="email" name="email" placeholder="Your email" required>
-              </div>
               <div style="width: 50%;" class="form-group pull-left">
                 <input class="form-control" type="name" name="first_name" placeholder="first name" required>
               </div>
               <div style="width: 50%;" class="form-group pull-right">
                 <input class="form-control" type="name" name="last_name" placeholder="last name" required>
               </div>
-              <div class="form-group">
+              <div style="width: 50%;" class="form-group pull-left">
                 <input class="form-control" type="text" name="phone" placeholder="phone number" required>
               </div>
+              <div style="width: 50%;" class="form-group  pull-right">
+                <input class="form-control" type="email" name="email" placeholder="email" required>
+              </div>
               <div class="form-group">
-                <textarea rows="5" class="form-control" name="message" placeholder="Your message" required></textarea>
+                 <textarea rows="2" class="form-control" name="appt" placeholder="Best days/times for appointments" required></textarea>
+              </div>
+              <div class="form-group">
+                <textarea rows="4" class="form-control" name="message" placeholder="Your message" required></textarea>
               </div>
               <div class="text-center">
                 <button id="send" class='pull-right btn btn-primary btn-lg' type="submit">Send</button>
@@ -259,28 +265,14 @@
       <!--end row-->
     </div>
   </footer>
-    <script>
-      function initMap() {
-        var uluru = {lat: 41.895815, lng: -87.637569};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 14,
-          center: uluru,
-          zoomControl: true,
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1ve9ITEHktYDE2tlPTxAzC_4ueqdZUww&callback=initMap">
-    </script>
     <script src="{% static 'cphh/js/jquery.min.js' %}"></script>
     <script src="{% static 'cphh/js/jquery.easing.min.js' %}"></script>
     <script src="{% static 'cphh/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'cphh/js/wow.js' %}"></script>
     <script src="{% static 'cphh/js/custom.js' %}"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1ve9ITEHktYDE2tlPTxAzC_4ueqdZUww&callback=initMap">
+    </script>
     
   </body>
 </html>

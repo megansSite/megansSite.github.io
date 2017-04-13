@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test image page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Progressive Home Veterinary Care Chicago</title>
+    <meta name="keywords" content="chicago veterinary care,mobile vet,house call veterinarian">
+    <meta name="description" content="Chicago's progressive veterinary care, provided in the comfort of your own home.">
+    <meta name="robots" content="index.follow">
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fira+Sans|Roboto:300,400|Questrial|Satisfy">
+    <link rel="stylesheet" type="text/css" href="{% static 'cphh/css/font-awesome-min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'cphh/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'cphh/css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'cphh/css/style.css' %}">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  </head>
+
+  <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60"">
+  <div class="">
+    <div >
+      <header id="main-header">
+        <nav class="navbar navbar-default navbar-fixed-top sm-color"">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#lauraMenu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>             
+            </div>
+            <div class="collapse navbar-collapse" id="lauraMenu">
+            {% if 'id' in request.session %}
+              <ul class="nav navbar-nav navbar-left navbar-border">
+                <li class="active"><a id="home-button" href="{% url 'cphh:logout' %}">Log Out</a></li>
+              </ul>
+            {% endif %}
+              <ul class="nav navbar-nav navbar-right navbar-border">
+                <li class="active"><a id="home-button" href="{% url 'cphh:index' %}">Home</a></li>
+                <li><a href="{% url 'cphh:index' %}#services">Services</a></li>
+                <li><a href="{% url 'cphh:index' %}#philosophy">Philosophy</a></li>
+                <li><a href="{% url 'cphh:index' %}#team">Meet the Team</a></li>
+                <li><a href="#contact">About/Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="wrapper">
+        <div class="container">
+          <div class="row">
+          </div>
+          </div>
+        </div>
+        </div>
+      </div>
+ 
+
+       
+  <section id="login" class="section-padding wow fadeIn delay-05s">
+    <div class="container">
+      <div class="row">
+        <div id="register-form" class="col-sm-6" >
+          {% if messages %}
+            {% for message in messages %}
+              <p class="text-white">{{message}}</p>
+            {% endfor %}
+          {% endif %}
+            <h3 class="deco text-white pull-right">Register</h3>
+            <form method="POST" action="{% url 'cphh:register' %}" class="contactForm">
+            {% csrf_token %}
+              <input type="hidden" name="_subject" value="Contact request from CPHH website" />
+              
+              <div class="form-group">
+                <input class="form-control" type="email" name="email" placeholder="email" required>
+              </div>
+              <div style="width: 50%;" class="form-group pull-left">
+                <input class="form-control" type="name" name="first_name" placeholder="first name" required>
+              </div>
+              <div style="width: 50%;" class="form-group pull-right">
+                <input class="form-control" type="name" name="last_name" placeholder="last name" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="text" name="phone" placeholder="phone number" required>
+              </div>
+              <div style="width: 50%;" class="form-group pull-left">
+                <input class="form-control" type="password" name="password" placeholder="choose password" required>
+              </div>
+              <div style="width: 50%;" class="form-group pull-right">
+                <input class="form-control" type="password" name="conf_password" placeholder="confirm password" required>
+              </div>
+              <div class="text-center">
+                <button id="send" class='pull-right btn btn-primary btn-lg' type="submit">Register</button>
+              </div>
+            </form>
+        </div>
+        <br>
+        <br>
+        <div id="register-form" class="col-sm-6" >
+            <h3 class="deco text-white pull-right">Login</h3>
+            <form method="POST" action="{% url 'cphh:login' %}" class="contactForm">
+            {% csrf_token %}
+              <input type="hidden" name="_subject" value="Contact request from CPHH website"/>
+              <div class="form-group">
+                <input class="form-control" type="email" name="email" placeholder="email" required>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="password" name="password" placeholder="password" required>
+              </div>
+              <div class="text-center">
+                <button id="send" class='pull-right btn btn-primary btn-lg' type="submit">Login</button>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="footer-2 text-center-xs bg--white">
+    <div class="container">
+      <!--end row-->
+      <div class="row">
+          <div class="col-md-6">
+              <div class="footer">
+                <p>© Copyright Chicago Pet Health &amp; Harmony 2017</p>
+                    <div class="credits" style="font-size: .7rem;">
+                        <p>Designed by <a href="https://bootstrapmade.com/">BootstrapMade.com</a> © Design Copyright Laura Theme. All Rights Reserved</p>
+                    </div>
+              </div>
+          </div>
+          
+      </div>
+      <!--end row-->
+    </div>
+  </footer>
+
+    <script src="{% static 'cphh/js/jquery.min.js' %}"></script>
+    <script src="{% static 'cphh/js/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'cphh/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'cphh/js/wow.js' %}"></script>
+    <script src="{% static 'cphh/js/custom.js' %}"></script>
+</body>
+</html>
