@@ -19,7 +19,7 @@
 
   <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60"">
   <div class="">
-    <div >
+    <div>
       <header id="main-header">
         <nav class="navbar navbar-default navbar-fixed-top sm-color"">
           <div class="container">
@@ -51,10 +51,10 @@
         <div class="container">
           <div class="row">
           </div>
-          </div>
-        </div>
         </div>
       </div>
+    </div>
+  </div>
  
 
 
@@ -81,15 +81,16 @@
             </button></a>
             {% endif %}
             {% if 'id' in request.session %}
-            <form action="{% url 'cphh:gallery' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <input id="id_image" type="file" class="" name="image">
-                 <br>
-                <input type="text" name="pet_name" required> <label>Pet's name</label>
-                <br>
-                <br>
-                <input id='send' class='btn btn-primary btn-lg' type="submit" value="Submit" />
-            </form>
+              <form action="{% url 'cphh:gallery' %}" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  <input id="id_image" type="file" class="" name="image">
+                   <br>
+                  <input type="text" name="pet_name" required> <label>Pet's name</label>
+                  <br>
+                  <br>
+                  <textarea name="testimonial" class="col-sm-12" placeholder="Write your testimonial here!"></textarea>
+                  <input id='send' class='btn btn-primary btn-lg' type="submit" value="Submit" />
+              </form>
             {% endif %}
            
           </div>
@@ -113,8 +114,28 @@
         {% endfor %}
        {% endif %}
       </div>
+      <div class="row gallery">
+        {% if testimonials %}
+         {% for testimonial in testimonials %}
+        <div class="card col-sm-12 col-md-6 col-lg-6">
+          <div class="card-block gallery-block">
+            <h4 class="card-title"> From {{testimonial.client.first_name}}:</h4>
+
+            {% if request.session.id == image.client.id %}
+              <div class="text-center">
+                <a href="{% url 'cphh:destroy_image' id=image.id %}"><button class='btn btn-primary btn-sm delete-btn' type="submit" value="Submit">Delete</button></a>
+              </div>
+            {% endif %}
+            {{testimonial.testimonial}}
+          </div>
+        </div>
+        {% endfor %}
+       {% endif %}
+      </div>
     </div>
   </section>
+
+
 
        
     <section id="contact" class="section-padding wow fadeIn delay-05s">
