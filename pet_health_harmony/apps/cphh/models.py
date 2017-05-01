@@ -48,19 +48,20 @@ class ClientManager(models.Manager):
             return False, response
 
 
-class UserManager(models.Manager):
-    def create_user(self, postData):
-        user = User.objects.create(email=postData['email'], first_name=postData['first_name'], last_name=postData['last_name'], phone=postData['phone'])
-        return user.id
+class InquiryManager(models.Manager):
+    def create_inquiry(self, postData):
+        inquiry = Inquiry.objects.create(email=postData['email'], first_name=postData['first_name'], last_name=postData['last_name'], phone=postData['phone'])
+        return inquiry.id
 
 
 class MessageManager(models.Manager):
     def create_message(self, postData):
-        user = User.objects.get(email=postData['email'])
-        message = Message.objects.create(user=user, message=postData['message'], appt=postData['appt'])
-        return user.id
+        inquiry = Inquiry.objects.get(email=postData['email'])
+        message = Message.objects.create(inquiry=inquiry, message=postData['message'], appt=postData['appt'])
+        return inquiry.id
 
-# DELETE DUPLICATE EMAILS
+
+
 class Client(models.Model):
     email = models.EmailField()
     first_name = models.CharField(max_length=100)
@@ -71,30 +72,40 @@ class Client(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
     objects = ClientManager()
 
-# client requests two distinct models for current patients and prospectives (aka anonymous User)
-class User(models.Model):
+# client requests two distinct models for current patients and prospectives (Inquiry)
+class Inquiry(models.Model):
     email = models.EmailField()
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     phone = models.CharField(max_length=15, blank=True)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
-    objects = UserManager()
+    objects = InquiryManager()
 
 class Message(models.Model):
-    user = models.ForeignKey(User, null=True, blank=True)
+    inquiry = models.ForeignKey(Inquiry, null=True, blank=True)
     message = models.TextField()
     appt = models.TextField(null=True, blank=True)
+    complete = models.BooleanField(default=False);
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     objects = MessageManager()
 
 class Image(models.Model):
     client = models.ForeignKey(Client, null=True, blank=True)
-    model_pic = fields.ImageField(upload_to = settings.MEDIA_URL, dependencies=[
+    model_pic = fields.ImageField(dependencies=[
         FileDependency(processor=ImageProcessor(
             format='PNG', scale={'max_width': 500, 'max_height': 500}))
     ])
+    moderated = fields.BooleanField(default=False)
     pet_name = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
+
+class Testimonial(models.Model):
+    client = models.ForeignKey(Client, null=True, blank=True)
+    testimonial = fields.TextField()
+    moderated = fields.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add = True)
+    updated_at = models.DateTimeField(auto_now = True)
+
