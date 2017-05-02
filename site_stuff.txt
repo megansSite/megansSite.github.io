@@ -1,0 +1,25 @@
+
+/manage contains :
+    Images:  if user == megan or krista, pending unmoderated images show with button to approve. All images have button to delete
+
+    Inquiries: list all inquiries with checkbox to mark complete
+
+
+INQUIRY MANAGEMENT:
+on submit, email is sent to megan containing message details
+
+
+
+
+GALLERY MoDERATION:
+when image is uploaded, moderated is set to false. email is sent to megan with link to page
+
+/gallery has logic to only show images if moderated == true
+
+/manage has same logic, but if user == megan or krista, pending unmoderated images show
+with button to approve.  moderated images have button to delete
+
+on approval update moderated == true
+
+
+

@@ -8,9 +8,9 @@ urlpatterns = [
     url(r'^register$', views.register, name="register"),
     url(r'^login$', views.login, name="login"),
     url(r'^logout$', views.logout, name="logout"),
-    url(r'^gallery/destroy/(?P<id>\d+)$', views.destroy_image, name="destroy_image"),
-    url(r'^manage/approve/(?P<id>\d+)$', views.approve_image, name="approve_image"),
-    url(r'^gallery/destroy_testimonial/(?P<id>\d+)$', views.destroy_testimonial, name="destroy_testimonial"),
-    url(r'^manage/approve_testimonial/(?P<id>\d+)$', views.approve_testimonial, name="approve_testimonial"),
-    url(r'^manage$', views.manage, name='manage')
+    url(r'^manage$', views.manage, name='manage'),
+    url(r'^image/delete/(?P<id>\d+)$', views.destroy_image, name="destroy_image"),
+    url(r'^image/approve/(?P<id>\d+)$', views.approve_image, name="approve_image"),
+    url(r'^testimonial/delete/(?P<id>\d+)$', views.destroy_testimonial, name="destroy_testimonial"),
+    url(r'^testimonial/approve/(?P<id>\d+)$', views.approve_testimonial, name="approve_testimonial"),    
 ]

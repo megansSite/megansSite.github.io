@@ -1,13 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>test image page</title>
+    <title>CPHH Manage Submissions</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Progressive Home Veterinary Care Chicago</title>
-    <meta name="keywords" content="chicago veterinary care,mobile vet,house call veterinarian">
-    <meta name="description" content="Chicago's progressive veterinary care, provided in the comfort of your own home.">
-    <meta name="robots" content="index.follow">
+    
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Fira+Sans|Roboto:300,400|Questrial|Satisfy">
     <link rel="stylesheet" type="text/css" href="{% static 'cphh/css/font-awesome-min.css' %}">
@@ -17,107 +15,92 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   </head>
 
-  <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60"">
-  <div class="">
-    <div>
-      <header id="main-header">
-        <nav class="navbar navbar-default navbar-fixed-top sm-color"">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#lauraMenu">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>             
-            </div>
-            <div class="collapse navbar-collapse" id="lauraMenu">
-            {% if 'id' in request.session %}
-              <ul class="nav navbar-nav navbar-left navbar-border">
-                <li class="active"><a id="home-button" href="{% url 'cphh:logout' %}">Log Out</a></li>
-              </ul>
-            {% endif %}
-              <ul class="nav navbar-nav navbar-right navbar-border">
-                <li class="active"><a id="home-button" href="{% url 'cphh:index' %}">Home</a></li>
-                <li><a href="{% url 'cphh:index' %}#services">Services</a></li>
-                <li><a href="{% url 'cphh:index' %}#philosophy">Philosophy</a></li>
-                <li><a href="{% url 'cphh:index' %}#team">Our Team</a></li>
-                <li><a href="#contact">About/Contact</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </header>
-      <div class="wrapper">
-        <div class="container">
-          <div class="row">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
- 
-
-
+  <body id="myPage" data-spy="scroll" data-offset="60"">
 
   <section id="gallery" class=" section-padding wow fadeIn delay-05s">
     <div class="container">
       <div class="row">
         <div class="col-md-12 text-right">
           <h2 class="title-text deco">
-            Images awaiting approval
+            Manage Testimonials 
           </h2>
-          <p>&nbsp;</p>
-        </div>
-        <div class="col-md-6 text-left">
-         
         </div>
       </div>
+
+
+      <div class="row">
+      {% for client in clients %}
+
+        <div class=" col-sm-5 col-md-5 col-lg-3" style="border: 1px solid gray; margin: 10px;">
+        <h4 class="card-title">{{client.first_name}} {{client.last_name}}</h4> 
+          {% for image in images %}
+            {% if image.client.id == client.id %}
+           <img class="gallery-image col-sm-12" src="{{media_url}}{{ image.model_pic }}">
+           <div class="text-center">
+            {% if image.moderated != True %}
+              <a href="{% url 'cphh:approve_image' id=image.id %}"><button class='btn btn-success btn-sm ' type="submit" value="Submit">Approve</button></a>
+            {% endif %}
+              <a href="{% url 'cphh:destroy_image' id=image.id %}"><button class='btn btn-primary btn-sm delete-btn' type="submit" value="Submit">Delete</button></a>
+            
+            </div>
+           {% endif %}
+          {% endfor %}
+          <div class="card-block">
+            {% for testimonial in testimonials %}
+              {% if testimonial.client.id == client.id %}
+                <br>
+                <p class="card-text text-center">"{{testimonial.testimonial}}"</p>
+                <div class="text-center">
+                {% if testimonial.moderated != True %}
+                  
+                  <a href="{% url 'cphh:approve_testimonial' id=testimonial.id %}"><button class='btn btn-success btn-sm ' type="submit" value="Submit">Approve</button></a>
+                {% endif %}
+                <a href="{% url 'cphh:destroy_testimonial' id=testimonial.id %}"><button class='btn btn-primary btn-sm delete-btn' type="submit" value="Submit">Delete</button></a>
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+
+
+
+
+
+
+
+<!-- 
       <div class="row gallery">
         {% if images %}
          {% for image in images %}
-        <div class="card col-sm-12 col-md-6 col-lg-6">
-          <div class="card-block gallery-block">
-            <h4 class="card-title"> {{image.pet_name}}, owned by {{image.client.first_name}}</h4>
 
+        <div class="card col-sm-12 col-md-6 col-lg-6">
+
+          <div class="card-block gallery-block">
+            <div class="text-center">
+            {% if image.moderated != True %}
+              <a href="{% url 'cphh:approve_image' id=image.id %}"><button class='btn btn-success btn-sm ' type="submit" value="Submit">Approve</button></a>
+            {% endif %}
+              <a href="{% url 'cphh:destroy_image' id=image.id %}"><button class='btn btn-primary btn-sm delete-btn' type="submit" value="Submit">Delete</button></a>
             
-              <div class="text-center">
-                <a href="{% url 'cphh:approve_image' id=image.id %}"><button class='btn btn-success btn-sm ' type="submit" value="Submit">Approve</button></a>
-                <a href="{% url 'cphh:destroy_image' id=image.id %}"><button class='btn btn-primary btn-sm delete-btn' type="submit" value="Submit">Decline</button></a>
-              </div>
-            
+            </div>
+            <h4 class="card-title"> Pet: {{image.pet_name}}  |  Owner:  {{image.client.first_name}} {{image.client.last_name}}</h4>
             <img class="gallery-image" src="{{media_url}}{{ image.model_pic }}">
+
+            {% if testimonials %}
+              {% for testimonial in testimonials %}
+               {% if testimonial.client.id == image.client.id %}
+                <h4 class="text-center">{{testimonial.testimonial}}</h4>
+               }
+               {% endif %}
+              {% endfor %}
+            {% endif %}
           </div>
         </div>
         {% endfor %}
        {% endif %}
       </div>
-
-      <div class="col-md-12 text-right">
-          <h2 class="title-text deco">
-            Testimonials awaiting approval
-          </h2>
-          <p>&nbsp;</p>
-        </div>
-      <div class="row gallery">
-        {% if testimonials %}
-         {% for testimonial in testimonials %}
-        <div class="card col-sm-12 col-md-6 col-lg-6">
-          <div class="card-block gallery-block">
-            <h5 class="card-title"> Testimonial from {{testimonial.client.first_name}} {{testimonial.client.last_name}} </h5>
-            <h4 class="text-center">{{testimonial.testimonial}}</h4>
-
-            
-              <div class="text-center">
-                <a href="{% url 'cphh:approve_testimonial' id=testimonial.id %}"><button class='btn btn-success btn-sm ' type="submit" value="Submit">Approve</button></a>
-                <a href="{% url 'cphh:destroy_testimonial' id=testimonial.id %}"><button class='btn btn-primary btn-sm delete-btn' type="submit" value="Submit">Decline</button></a>
-              </div>
-
-            
-          </div>
-        </div>
-        {% endfor %}
-       {% endif %}
-      </div>
+ -->
 
     </div>
   </section>
@@ -130,7 +113,7 @@
     <script src="{% static 'cphh/js/jquery.easing.min.js' %}"></script>
     <script src="{% static 'cphh/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'cphh/js/wow.js' %}"></script>
-    <script src="{% static 'cphh/js/custom.js' %}"></script>
+
     
 </body>
 </html>

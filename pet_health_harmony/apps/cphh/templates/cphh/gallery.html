@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>test image page</title>
+    <title>CPHH Patients</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Progressive Home Veterinary Care Chicago</title>
@@ -75,7 +75,7 @@
         </div>
         <div class="col-md-6 text-left">
           <div class="services-text">
-            <h4>Is your pet a CPHH pet? Share your pics!</h4>
+            <h4>Is your pet a CPHH pet? Tell us about your experience (and share an image of your pet)!</h4>
             {% if 'id' not in request.session %}
             <a href="{% url 'cphh:login' %}"><button id="send" class='pull-left btn btn-primary btn-lg' type="submit">Log In or Sign Up 
             </button></a>
@@ -97,41 +97,33 @@
         </div>
       </div>
       <div class="row gallery">
+
+      
         {% if images %}
          {% for image in images %}
-        <div class="card col-sm-12 col-md-6 col-lg-6">
-          <div class="card-block gallery-block">
-            <h4 class="card-title"> {{image.pet_name}}, owned by {{image.client.first_name}}</h4>
-
-            {% if request.session.id == image.client.id %}
-              <div class="text-center">
-                <a href="{% url 'cphh:destroy_image' id=image.id %}"><button class='btn btn-primary btn-sm delete-btn' type="submit" value="Submit">Delete</button></a>
-              </div>
-            {% endif %}
-            <img class="gallery-image" src="{{media_url}}{{ image.model_pic }}">
+          <div class=" col-sm-12 col-md-6 col-lg-6">
+            <div class="card-block gallery-block">
+          
+              <h4 class="card-title"> 
+              {{image.pet_name}}, owned by {{image.client.first_name}}</h4>
+              <img class="gallery-image" src="{{media_url}}{{ image.model_pic }}">
+          
+              {% if testimonials %}
+                {% for testimonial in testimonials %}
+                  {% if testimonial.client.id == image.client.id %}
+                    <h4 class="text-center">{{testimonial.testimonial}}</h4>
+                    
+                  {% endif%}
+                {% endfor%}
+              {% endif%}
+            </div>
           </div>
-        </div>
         {% endfor %}
        {% endif %}
-      </div>
-      <div class="row gallery">
-        {% if testimonials %}
-         {% for testimonial in testimonials %}
-        <div class="card col-sm-12 col-md-6 col-lg-6">
-          <div class="card-block gallery-block">
-            <h4 class="card-title"> From {{testimonial.client.first_name}}:</h4>
 
-            {% if request.session.id == image.client.id %}
-              <div class="text-center">
-                <a href="{% url 'cphh:destroy_image' id=image.id %}"><button class='btn btn-primary btn-sm delete-btn' type="submit" value="Submit">Delete</button></a>
-              </div>
-            {% endif %}
-            {{testimonial.testimonial}}
-          </div>
-        </div>
-        {% endfor %}
-       {% endif %}
+
       </div>
+      
     </div>
   </section>
 

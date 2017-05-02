@@ -13,33 +13,27 @@ def index(request):
 
 def contact(request):
     inquiry_id = Inquiry.objects.create_inquiry(request.POST)
-    request.session['id'] = inquiry_id
     message = Message.objects.create_message(request.POST)
     messages.success(request, "Successfully sent! We will respond within 1 business day.")
     return redirect(reverse('cphh:index'))
     
-# TODO: fix testimonials creation
 def gallery(request):
     if request.method == 'POST':  
-
-        # try:
-        form = ImageUploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            client = Client.objects.get(id=request.session['id'])
-            print "client", client
-            image = Image.objects.create(client=client, model_pic=form.cleaned_data['image'], pet_name=request.POST['pet_name'])
-            print "image", image
-            testimonial = Testimonial.objects.create(client=client, testimonial = request.POST['testimonial'])
-            print "testimonial", testimonial
-            messages.success(request, "Success! Your submission is under review.")
-        # except:
-        #     print "didnt work"
-        #     messages.error(request, "Something went wrong :( Try again?")
+        try:
+            form = ImageUploadForm(request.POST, request.FILES)
+            if form.is_valid():
+                client = Client.objects.get(id=request.session['id'])
+                image = Image.objects.create(client=client, model_pic=form.cleaned_data['image'], pet_name=request.POST['pet_name'])
+                testimonial = Testimonial.objects.create(client=client, testimonial = request.POST['testimonial'])
+                messages.success(request, "Success! Your submission is under review.")
+        except:
+            messages.error(request, "Something went wrong :( Try again?")
         return redirect(reverse('cphh:gallery'))
     else:
 
         context = {
             'images': Image.objects.filter(moderated=True).order_by('-created_at'),
+            'clients': Client.objects.all(),
             'testimonials': Testimonial.objects.filter(moderated=True).order_by('-created_at'),
             'media_url': settings.MEDIA_URL,
         }
@@ -65,17 +59,22 @@ def login(request):
         login_valid, login_response = Client.objects.login(request.POST)
         if login_valid:
             request.session['id'] = login_response.id
-            return redirect(reverse('cphh:gallery'))
+            if request.session['id'] == 3:
+                return redirect(reverse('cphh:manage'))
+            else:
+                return redirect(reverse('cphh:gallery'))
         else:
             messages.error(request, login_response)
     return render(request,'cphh/login.html')
 
 def logout(request):
     request.session.clear()
-    return redirect(reverse('cphh:gallery'))
+    return redirect(reverse('cphh:index'))
 
 
 # TODO: update logic to return to referrer vs hard-coded session id logic 
+# TODO: combine image and testimonial delete process
+
 def destroy_image(request, id):
     image = Image.objects.get(id=id).delete()
     if request.session['id'] == 3:
@@ -97,7 +96,7 @@ def destroy_testimonial(request, id):
         return redirect(reverse('cphh:gallery'))
 
 def approve_testimonial(request, id):
-    testimonial = Testimonial.objects.get(id=id).delete()
+    testimonial = Testimonial.objects.get(id=id)
     testimonial.moderated = True
     testimonial.save()
     return redirect(reverse('cphh:manage'))
@@ -108,8 +107,9 @@ def manage(request):
        return redirect(reverse('cphh:login'))
     if request.session['id'] == 3:
         context = {
-                'images': Image.objects.filter(moderated=False),
-                'testimonials': Testimonial.objects.filter(moderated=False),
+                'images': Image.objects.all().order_by('moderated'),
+                'testimonials': Testimonial.objects.all().order_by('-created_at'),
+                'clients': Client.objects.all().order_by('created_at'),
                 'media_url': settings.MEDIA_URL,
             }
         return render(request, 'cphh/manage.html', context) 
