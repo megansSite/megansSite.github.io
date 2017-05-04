@@ -57,14 +57,25 @@
 
 
   function initMap() {
-    var uluru = {lat: 41.988231, lng: -87.808771};
+    var cphh = {lat: 41.988231, lng: -87.808771};
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 12,
-      center: uluru,
+      center: cphh,
       zoomControl: true,
     });
     var marker = new google.maps.Marker({
-      position: uluru,
+      position: cphh,
       map: map
     });
+
+    // var cityCircle = new google.maps.Circle({
+    //   strokeColor: '#FF0000',
+    //   strokeOpacity: 0.8,
+    //   strokeWeight: 2,
+    //   fillColor: '#FF0000',
+    //   fillOpacity: 0.35,
+    //   map: map,
+    //   center: cphh,
+    //   radius:  10000
+    // });
   }

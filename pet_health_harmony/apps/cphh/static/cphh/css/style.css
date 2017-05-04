@@ -100,7 +100,7 @@ h4 {
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover {
     color: #9da993;
     font-weight: bold;
-    background-color: #d9cfcd;
+    background-color: transparent;
 }
 
 #home-button:hover {
@@ -136,7 +136,7 @@ h4 {
     margin-top: 100px;
 }
 .gallery-block {
-/*    height: 400px;*/
+    height: 400px;
     width: 100%;
     vertical-align: middle !important;
     margin: 0 auto !important;
@@ -202,6 +202,7 @@ h4 {
 
 .card-text {
     display: block !important;
+    padding-top: 5px !important;
 }
 
 .card-title {
@@ -434,8 +435,27 @@ footer {
 
 #register-form {
     margin-top: 50px;
-    }
+}
 
+.testimonial-block {
+    background-color: #4a3637;
+    border-radius: 10px;
+    color: #d9cfcd;
+    margin-bottom: 15px;
+    padding: 10px;
+    font-family: 'Athelas', sans-serif !important;
+    min-height: 150px;
+    max-height:200px;
+    overflow:scroll;
+}
+
+.testimonial-block>p {
+    color: #d9cfcd;
+    font-size: 1.4rem;
+    padding-bottom: 8px;
+    padding-top: 10px;
+
+}
 
 /***********************************
 ************************************

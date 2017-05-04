@@ -18,49 +18,46 @@
   </head>
 
   <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60"">
-  <div class="">
-    <div>
-      <header id="main-header">
-        <nav class="navbar navbar-default navbar-fixed-top sm-color"">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#lauraMenu">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>             
-            </div>
-            <div class="collapse navbar-collapse" id="lauraMenu">
-            {% if 'id' in request.session %}
-              <ul class="nav navbar-nav navbar-left navbar-border">
-                <li class="active"><a id="home-button" href="{% url 'cphh:logout' %}">Log Out</a></li>
-              </ul>
-            {% endif %}
-              <ul class="nav navbar-nav navbar-right navbar-border">
-                <li class="active"><a id="home-button" href="{% url 'cphh:index' %}">Home</a></li>
-                <li><a href="{% url 'cphh:index' %}#services">Services</a></li>
-                <li><a href="{% url 'cphh:index' %}#philosophy">Philosophy</a></li>
-                <li><a href="{% url 'cphh:index' %}#team">Our Team</a></li>
-                <li><a href="#contact">About/Contact</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </header>
-      <div class="wrapper">
-        <div class="container">
-          <div class="row">
-          </div>
+
+
+  <!-- Header -->
+  <header id="main-header">
+    <nav class="navbar navbar-default navbar-fixed-top sm-color"">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#lauraMenu">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>             
+        </div>
+        <div class="collapse navbar-collapse" id="lauraMenu">
+        {% if 'id' in request.session %}
+          <ul class="nav navbar-nav navbar-left navbar-border">
+            <li class="active"><a id="home-button" href="{% url 'cphh:logout' %}">Log Out</a></li>
+          </ul>
+        {% endif %}
+          <ul class="nav navbar-nav navbar-right navbar-border">
+            <li class="active"><a id="home-button" href="{% url 'cphh:index' %}">Home</a></li>
+            <li><a href="{% url 'cphh:index' %}#services">Services</a></li>
+            <li><a href="{% url 'cphh:index' %}#philosophy">Philosophy</a></li>
+            <li><a href="{% url 'cphh:index' %}#team">Our Team</a></li>
+            <li><a href="#contact">About/Contact</a></li>
+          </ul>
         </div>
       </div>
-    </div>
-  </div>
+    </nav>
+  </header>
+  <!-- End Header -->
  
 
 
-
+  <!-- Main Gallery Section -->
    <section id="gallery" class=" section-padding wow fadeIn delay-05s">
+
     <div class="container">
+
+      <!-- Submit Row -->
       <div class="row">
         <div class="col-md-6 text-right">
           <h2 class="title-text deco">
@@ -88,76 +85,87 @@
                   <input type="text" name="pet_name" required> <label>Pet's name</label>
                   <br>
                   <br>
-                  <textarea name="testimonial" class="col-sm-12" placeholder="Write your testimonial here!"></textarea>
+                  <textarea name="testimonial" class="col-sm-12" placeholder="Write your testimonial here!" required></textarea>
                   <input id='send' class='btn btn-primary btn-lg' type="submit" value="Submit" />
               </form>
             {% endif %}
-           
           </div>
         </div>
       </div>
-      <div class="row gallery">
+      <!-- End Submit Row -->
 
-      
-        {% if images %}
-         {% for image in images %}
+      <!-- Testimonials Row -->
+      <div class="row gallery">
+        {% if testimonials %}
+          {% for testimonial in testimonials %}
           <div class=" col-sm-12 col-md-6 col-lg-6">
-            <div class="card-block gallery-block">
-          
+            <div class="card-block testimonial-block">
+            <p class="text-center">From {{testimonial.client.first_name}} {{testimonial.client.last_name}}:</p>
               <h4 class="card-title"> 
-              {{image.pet_name}}, owned by {{image.client.first_name}}</h4>
-              <img class="gallery-image" src="{{media_url}}{{ image.model_pic }}">
-          
-              {% if testimonials %}
-                {% for testimonial in testimonials %}
-                  {% if testimonial.client.id == image.client.id %}
-                    <h4 class="text-center">{{testimonial.testimonial}}</h4>
-                    
-                  {% endif%}
-                {% endfor%}
-              {% endif%}
+              "{{testimonial.testimonial}}"</h4>
+              
             </div>
           </div>
         {% endfor %}
        {% endif %}
-
-
       </div>
-      
+      <!-- End Testimonials Row -->
+
+      <!-- Images Row -->
+      <div class="row gallery">
+        {% if images %}
+         {% for image in images %}
+          <div class=" col-sm-12 col-md-6 col-lg-6">
+            <div class="card-block gallery-block">
+              <h4 class="card-title"> 
+              {{image.pet_name}}, owned by {{image.client.first_name}}</h4>
+              <img class="gallery-image" src="{{media_url}}{{ image.model_pic }}">
+            </div>
+          </div>
+        {% endfor %}
+       {% endif %}
+      </div>
+      <!-- End Images Row -->
+
     </div>
+
   </section>
+  <!-- End Main Gallery Section -->
 
 
 
-       
-    <section id="contact" class="section-padding wow fadeIn delay-05s">
+
+
+
+  <!-- Contact Section -->
+  <section id="contact" class="section-padding wow fadeIn delay-05s">
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <div class="text-right contact-sec text-white">
-            <h2 class="deco title-text">Contact Us</h2>
+        <div class="col-sm-12">
+          <div class="text-right contact-sec text-white col-md-6 pull-right">
+            <h2 class="deco title-text">Hours, Location and Contact</h2>
           </div>
-          <img class="pull-right contact-brand" src="{% static 'cphh/img/logo.png' %}">
-          p
+          <img class=" col-md-6 pull-left contact-brand" src="{% static 'cphh/img/logo.png' %}">
         </div>
+
       </div>
+      <br>
       <div class="row">
-        <div class="col-md-6 pull-left">
-          <h3 class="text-white">Serving Chicago and Southern Lake County</h3>
+        <div class="col-md-7 pull-left">
+          <h4 class="text-white">Serving Chicago, Northwest Cook, and Southern Lake Counties</h4>
           <div id="map"></div>
         </div>
-        <div class="col-md-6 pull-right">
-          <h3 class="text-white">Mon-Fri 9am-9pm</h3>
-            <h3 class="text-white">Sat 10am-4pm</h3>
-            <h3 class="text-white">Sun Closed</h3>
+        <div class="col-md-5 pull-right">
+          <h3 class="text-white">Phone (312) 934-5753</h3>
+          <h4 class="text-white">Mon-Fri 9am-9pm</h4>
+          <h4 class="text-white">Sat 10am-4pm, Closed Sun</h4>
+          <h5 class="text-white">After-hours call MedVet Emergency (773) 281-7110</h5>
         </div>
         <br>
         <br>
-        <div id="contact-form" class="col-md-6 pull-right">
-
+        <div id="contact-form" class="col-md-5 pull-right">
             <form method="POST" action="{% url 'cphh:contact' %}" class="contactForm">
             {% csrf_token %}
-              <input type="hidden" name="_subject" value="Contact request from CPHH website" />
               <div style="width: 50%;" class="form-group pull-left">
                 <input class="form-control" type="name" name="first_name" placeholder="first name" required>
               </div>
@@ -184,11 +192,11 @@
       </div>
     </div>
   </section>
+  <!-- End Contact Section -->
 
-
+  <!--  Footer -->
   <footer class="footer-2 text-center-xs bg--white">
     <div class="container">
-      <!--end row-->
       <div class="row">
           <div class="col-md-6">
               <div class="footer">
@@ -198,11 +206,10 @@
                     </div>
               </div>
           </div>
-          
       </div>
-      <!--end row-->
     </div>
   </footer>
+  <!-- End Footer -->
     
     <script src="{% static 'cphh/js/jquery.min.js' %}"></script>
     <script src="{% static 'cphh/js/jquery.easing.min.js' %}"></script>

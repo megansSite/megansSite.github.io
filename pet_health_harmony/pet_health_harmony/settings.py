@@ -129,3 +129,10 @@ STATIC_ROOT = os.path.join(ENV_PATH, '/static/')
 MEDIA_ROOT = os.path.join(BASE_DIR,'MEDIA')
 
 MEDIA_URL = "media/"
+
+ADMIN_EMAIL = 'meganacarolan@gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'pethealthandharmony@gmail.com'
+EMAIL_HOST_PASSWORD = os.environ['CPHH_EMAIL_PASSWORD']
+EMAIL_PORT = 587

@@ -6,34 +6,36 @@ from django.core.urlresolvers import reverse
 from .models import Client, Inquiry, Message, Image, Testimonial
 from .forms import ImageUploadForm
 from django.conf import settings
-from django.contrib import messages
+
 
 def index(request):
     return render(request, 'cphh/index.html')
 
 def contact(request):
-    inquiry_id = Inquiry.objects.create_inquiry(request.POST)
-    message = Message.objects.create_message(request.POST)
-    messages.success(request, "Successfully sent! We will respond within 1 business day.")
+    if request.method == 'POST':
+        try:
+            inquiry_id = Inquiry.objects.create_inquiry(request.POST)
+            message = Message.objects.create_message(request.POST)
+            contact_success = Inquiry.objects.send_email(request.POST)
+            if contact_success:
+                messages.success(request, "Successfully sent! We will respond within 1 business day.")
+        except: 
+            messages.error(request, "Something went wrong. Please try again or call us during normal business hours.")
     return redirect(reverse('cphh:index'))
     
 def gallery(request):
     if request.method == 'POST':  
-        try:
-            form = ImageUploadForm(request.POST, request.FILES)
-            if form.is_valid():
-                client = Client.objects.get(id=request.session['id'])
-                image = Image.objects.create(client=client, model_pic=form.cleaned_data['image'], pet_name=request.POST['pet_name'])
-                testimonial = Testimonial.objects.create(client=client, testimonial = request.POST['testimonial'])
+        form = ImageUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            success = Client.objects.submit_testimonial(request.POST, form.cleaned_data['image'], request.session['id'])
+            if success:
                 messages.success(request, "Success! Your submission is under review.")
-        except:
-            messages.error(request, "Something went wrong :( Try again?")
+        else:
+            messages.error(request, "Something went wrong :( Try again? Please fill out all fields and include a pic!")
         return redirect(reverse('cphh:gallery'))
     else:
-
         context = {
             'images': Image.objects.filter(moderated=True).order_by('-created_at'),
-            'clients': Client.objects.all(),
             'testimonials': Testimonial.objects.filter(moderated=True).order_by('-created_at'),
             'media_url': settings.MEDIA_URL,
         }
@@ -59,7 +61,8 @@ def login(request):
         login_valid, login_response = Client.objects.login(request.POST)
         if login_valid:
             request.session['id'] = login_response.id
-            if request.session['id'] == 3:
+            request.session['email'] = login_response.email
+            if request.session['email'] ==settings.ADMIN_EMAIL:
                 return redirect(reverse('cphh:manage'))
             else:
                 return redirect(reverse('cphh:gallery'))
@@ -72,40 +75,39 @@ def logout(request):
     return redirect(reverse('cphh:index'))
 
 
-# TODO: update logic to return to referrer vs hard-coded session id logic 
-# TODO: combine image and testimonial delete process
+# TODO: update logic to return to referrer vs hard-coded session email logic 
+
 
 def destroy_image(request, id):
-    image = Image.objects.get(id=id).delete()
-    if request.session['id'] == 3:
-        return redirect(reverse('cphh:manage'))
-    else:
-        return redirect(reverse('cphh:gallery'))
-
+    if request.session['email'] == settings.ADMIN_EMAIL:
+        image = Image.objects.get(id=id).delete()
+    return redirect(reverse('cphh:manage'))
+    
 def approve_image(request, id):
-    image = Image.objects.get(id=id)
-    image.moderated = True
-    image.save()
+    if request.session['email'] == settings.ADMIN_EMAIL:
+        image = Image.objects.get(id=id)
+        image.moderated = True
+        image.save()
     return redirect(reverse('cphh:manage'))
 
 def destroy_testimonial(request, id):
-    testimonial = Testimonial.objects.get(id=id).delete()
-    if request.session['id'] == 3:
-        return redirect(reverse('cphh:manage'))
-    else:
-        return redirect(reverse('cphh:gallery'))
+    if request.session['email'] == settings.ADMIN_EMAIL:
+        testimonial = Testimonial.objects.get(id=id).delete()
+    return redirect(reverse('cphh:manage'))
+    
 
 def approve_testimonial(request, id):
-    testimonial = Testimonial.objects.get(id=id)
-    testimonial.moderated = True
-    testimonial.save()
+    if request.session['email'] == settings.ADMIN_EMAIL:
+        testimonial = Testimonial.objects.get(id=id)
+        testimonial.moderated = True
+        testimonial.save()
     return redirect(reverse('cphh:manage'))
 
 
 def manage(request):
-    if 'id' not in request.session or request.session['id'] != 3:
-       return redirect(reverse('cphh:login'))
-    if request.session['id'] == 3:
+    if 'email' not in request.session or request.session['email'] != settings.ADMIN_EMAIL:
+        return redirect(reverse('cphh:login'))
+    elif request.session['email'] == settings.ADMIN_EMAIL:
         context = {
                 'images': Image.objects.all().order_by('moderated'),
                 'testimonials': Testimonial.objects.all().order_by('-created_at'),
@@ -113,3 +115,5 @@ def manage(request):
                 'media_url': settings.MEDIA_URL,
             }
         return render(request, 'cphh/manage.html', context) 
+
+        
