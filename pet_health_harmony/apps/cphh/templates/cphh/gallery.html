@@ -66,7 +66,7 @@
           <p>&nbsp;</p>
           {% if messages %}
             {% for message in messages %}
-                <p>{{message}}</p>
+                <p class=" text-white messages">{{message}}</p>
             {% endfor %}
           {% endif %}
         </div>
@@ -98,12 +98,10 @@
       <div class="row gallery">
         {% if testimonials %}
           {% for testimonial in testimonials %}
-          <div class=" col-sm-12 col-md-6 col-lg-6">
+          <div class="col-sm-12 col-md-6 col-lg-6">
             <div class="card-block testimonial-block">
-            <p class="text-center">From {{testimonial.client.first_name}} {{testimonial.client.last_name}}:</p>
-              <h4 class="card-title"> 
-              "{{testimonial.testimonial}}"</h4>
-              
+              <p class="text-center">From {{testimonial.client.first_name}} {{testimonial.client.last_name_initial}}:</p>
+              <h4 class="card-title">{{testimonial.testimonial}}</h4>
             </div>
           </div>
         {% endfor %}
@@ -201,9 +199,6 @@
           <div class="col-md-6">
               <div class="footer">
                 <p>© Copyright Chicago Pet Health &amp; Harmony 2017</p>
-                    <div class="credits" style="font-size: .7rem;">
-                        <p>Designed by <a href="https://bootstrapmade.com/">BootstrapMade.com</a> © Design Copyright Laura Theme. All Rights Reserved</p>
-                    </div>
               </div>
           </div>
       </div>
@@ -211,6 +206,8 @@
   </footer>
   <!-- End Footer -->
     
+<!--   Original design by <a href="https://bootstrapmade.com/">BootstrapMade.com</a> © Design Copyright Laura Theme. All Rights Reserved
+                    -->
     <script src="{% static 'cphh/js/jquery.min.js' %}"></script>
     <script src="{% static 'cphh/js/jquery.easing.min.js' %}"></script>
     <script src="{% static 'cphh/js/bootstrap.min.js' %}"></script>

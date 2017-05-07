@@ -62,11 +62,7 @@
     <div class="container">
       <div class="row">
         <div id="register-form" class="col-sm-6" >
-          {% if messages %}
-            {% for message in messages %}
-              <p class="text-white">{{message}}</p>
-            {% endfor %}
-          {% endif %}
+          
             <h3 class="deco text-white pull-right">Register</h3>
             <form method="POST" action="{% url 'cphh:register' %}" class="contactForm">
             {% csrf_token %}
@@ -95,13 +91,11 @@
               </div>
             </form>
         </div>
-        <br>
-        <br>
+    
         <div id="register-form" class="col-sm-6" >
             <h3 class="deco text-white pull-right">Login</h3>
             <form method="POST" action="{% url 'cphh:login' %}" class="contactForm">
             {% csrf_token %}
-              <input type="hidden" name="_subject" value="Contact request from CPHH website"/>
               <div class="form-group">
                 <input class="form-control" type="email" name="email" placeholder="email" required>
               </div>
@@ -114,6 +108,13 @@
             </form>
         </div>
       </div>
+      <div class="col-sm-4 pull-right">
+        {% if messages %}
+          {% for message in messages %}
+            <p class="text-white messages">{{message}}</p>
+          {% endfor %}
+        {% endif %}
+      </div>
     </div>
   </section>
 
@@ -125,9 +126,6 @@
           <div class="col-md-6">
               <div class="footer">
                 <p>© Copyright Chicago Pet Health &amp; Harmony 2017</p>
-                    <div class="credits" style="font-size: .7rem;">
-                        <p>Designed by <a href="https://bootstrapmade.com/">BootstrapMade.com</a> © Design Copyright Laura Theme. All Rights Reserved</p>
-                    </div>
               </div>
           </div>
           
@@ -135,6 +133,9 @@
       <!--end row-->
     </div>
   </footer>
+
+<!--   Original design <a href="https://bootstrapmade.com/">BootstrapMade.com</a> © Design Copyright Laura Theme. All Rights Reserved
+                    -->
 
     <script src="{% static 'cphh/js/jquery.min.js' %}"></script>
     <script src="{% static 'cphh/js/jquery.easing.min.js' %}"></script>

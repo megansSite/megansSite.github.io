@@ -133,25 +133,23 @@ h4 {
 }
 
 .gallery {
-    margin-top: 100px;
+    margin-top: 40px;
 }
+
 .gallery-block {
     height: 400px;
     width: 100%;
     vertical-align: middle !important;
     margin: 0 auto !important;
-    margin-top: -50px !important;
+    margin-top: 50px !important;
     overflow: hidden !important;
 }
 .gallery-image {
     display: block;
     margin: 0 auto;
-    padding-top: 10px !important;
- /*   overflow: hidden !important;*/
+}
 
-}
-.navbar-border{
-}
+
 .banner-text{
 	padding: 15px 20px;
 	color: #fff;
@@ -159,7 +157,6 @@ h4 {
 }
 .banner-text h2 {
 	font-size: 60px !important;
-/*	font-weight: 400;*/
     margin-top: 40px;
 	font-family: 'Athelas', sans-serif;
 }
@@ -444,9 +441,10 @@ footer {
     margin-bottom: 15px;
     padding: 10px;
     font-family: 'Athelas', sans-serif !important;
-    min-height: 150px;
+    min-height: 200px;
     max-height:200px;
     overflow:scroll;
+    border-bottom: 1em solid transparent;
 }
 
 .testimonial-block>p {
@@ -454,7 +452,19 @@ footer {
     font-size: 1.4rem;
     padding-bottom: 8px;
     padding-top: 10px;
+}
 
+.testimonial-block>h4 {
+    font-weight: 300 !important;
+    height: auto;
+    overflow: visible;
+}
+
+.messages {
+    background-color: indianred;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
 }
 
 /***********************************

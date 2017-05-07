@@ -39,6 +39,9 @@ def gallery(request):
             'testimonials': Testimonial.objects.filter(moderated=True).order_by('-created_at'),
             'media_url': settings.MEDIA_URL,
         }
+        #Only display first letter of last name in gallery
+        for testimonial in context['testimonials']:
+            testimonial.client.last_name_initial =  testimonial.client.last_name[0]
         return render(request,'cphh/gallery.html', context)
 
 def register(request):
@@ -74,10 +77,6 @@ def logout(request):
     request.session.clear()
     return redirect(reverse('cphh:index'))
 
-
-# TODO: update logic to return to referrer vs hard-coded session email logic 
-
-
 def destroy_image(request, id):
     if request.session['email'] == settings.ADMIN_EMAIL:
         image = Image.objects.get(id=id).delete()
@@ -94,7 +93,6 @@ def destroy_testimonial(request, id):
     if request.session['email'] == settings.ADMIN_EMAIL:
         testimonial = Testimonial.objects.get(id=id).delete()
     return redirect(reverse('cphh:manage'))
-    
 
 def approve_testimonial(request, id):
     if request.session['email'] == settings.ADMIN_EMAIL:
@@ -103,17 +101,16 @@ def approve_testimonial(request, id):
         testimonial.save()
     return redirect(reverse('cphh:manage'))
 
-
 def manage(request):
     if 'email' not in request.session or request.session['email'] != settings.ADMIN_EMAIL:
         return redirect(reverse('cphh:login'))
     elif request.session['email'] == settings.ADMIN_EMAIL:
         context = {
-                'images': Image.objects.all().order_by('moderated'),
-                'testimonials': Testimonial.objects.all().order_by('-created_at'),
-                'clients': Client.objects.all().order_by('created_at'),
-                'media_url': settings.MEDIA_URL,
-            }
+            'images': Image.objects.all().order_by('moderated'),
+            'testimonials': Testimonial.objects.all().order_by('-created_at'),
+            'clients': Client.objects.all().order_by('-created_at'),
+            'media_url': settings.MEDIA_URL,
+        }
         return render(request, 'cphh/manage.html', context) 
 
         
